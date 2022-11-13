@@ -48,8 +48,8 @@ export const inquiry = createSlice({
 
         const payload = {
           method: "rajabiller.inq",
-          uid: "SP300203",
-          pin: "893456",
+          uid: "SP173269",
+          pin: "085648",
           idpel1: "6130070696",
           idpel2: "",
           idpel3: "",
@@ -63,34 +63,24 @@ export const inquiry = createSlice({
       //     }
       //   );
 
-      axios
-        .get("https://a.4cdn.org/a/threads.json", {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-          proxy: {
-            host: "104.236.174.88",
-            port: 3128,
-          },
-          params: {
+       axios.post("https://rajabiller.fastpay.co.id/transaksi/json.php",{
             payload
-          }
         })
         .then(function (response) {
           console.log("response is : " + response.data);
         })
         .catch(function (error) {
           if (error.response) {
-            console.log(error.response.headers);
+            console.log(error.response.headers, 'INI HEADER');
           } else if (error.request) {
-            console.log(error.request);
+            console.log(error.request, 'INI REQUERST');
           } else {
-            console.log(error.message);
+            console.log(error.message, 'INI MESSAGE');
           }
-          console.log(error.config);
+          console.log(error.config, 'INI CONFIG');
         });
 
-      //   console.log(response)
+        // console.log(response)
     },
   },
   // extraReducers: {
