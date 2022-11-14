@@ -1,47 +1,59 @@
 import styles from '../styles/Home.module.css'
-import { updateInquiry } from "../components/inquiry.slice";
+import { inquirySelectors, getProduct } from "../components/inquiry.slice";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function template() {
 
     const dispatch = useDispatch()
 
-    const { method, uid, pin, idpel1, kode_produk } = useSelector((state) => state.inquiry)
+    /* Baru */
+    // const response = useSelector(state => state.product)
+    // console.log(response.product.DATA)
+    // const products = response.product.DATA
+    
+    // const [products, setProduct] = useState([])
+    // setProduct(response.product.DATA)
+    
+    useEffect(()=> {
+        dispatch(getProduct())
+    }, [dispatch])
+    const response = useSelector(state => state.product)
+    console.log(response.product.DATA)
+    // console.log(products)
+    /* Lama */
 
-    const kosong = 'Kosong'
-    // console.log(method, 'method')
-    // console.log(uid, 'uid')
-    const [input, setInput] = useState({
-        uid: '', 
-        pin: '', 
-        idpel1: '', 
-        kode_produk: ''
-    })
+    // const { method, uid, pin, idpel1, kode_produk } = useSelector((state) => state.inquiry)
 
-    const handleChange = (event) => {
-        let nameOfInput  = event.target.name
-        let valueOfInput = event.target.value
-        // console.log(nameOfInput, 'name')
-        // console.log(valueOfInput, 'value')
+    // const kosong = 'Kosong'
+    // const [input, setInput] = useState({
+    //     uid: '', 
+    //     pin: '', 
+    //     idpel1: '', 
+    //     kode_produk: ''
+    // })
 
-        setInput({...input, [nameOfInput]: valueOfInput})
-    }
+    // const handleChange = (event) => {
+    //     let nameOfInput  = event.target.name
+    //     let valueOfInput = event.target.value
 
-    const inputInquiry = (e) => {
-        e.preventDefault()
-        console.log(input)
-        const { uid, pin, idpel1, kode_produk } = input
-        dispatch(updateInquiry({
-            uid, pin, idpel1, kode_produk
-        }))
-    }
+    //     setInput({...input, [nameOfInput]: valueOfInput})
+    // }
+
+    // const inputInquiry = (e) => {
+    //     e.preventDefault()
+
+    //     const { uid, pin, idpel1, kode_produk } = input
+    //     dispatch(updateInquiry({
+    //         uid, pin, idpel1, kode_produk
+    //     }))
+    // }
 
     return (
         <>
             <div className={styles.container}>
                 <div className='grid grid-cols-2 gap-4 mt-10'>
-                    <div>
+                    {/* <div>
                         <form onSubmit={inputInquiry}  action="#" method="POST" className="bg-sky-500">
                             <div className="overflow-hidden shadow sm:rounded-md">
                                 <div className="px-4 py-5 sm:p-6">
@@ -139,6 +151,16 @@ export default function template() {
                                 </dl>
                             </div>
                         </div>
+                    </div> */}
+                    <div>
+                        <h1>TEST</h1>
+                        {/* {response.product.DATA.map((product, index) => {
+                            <tr key={index}>
+                                <td>{product}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        })} */}
                     </div>
                 </div>
             </div>
