@@ -12,15 +12,15 @@ export default function template() {
     // console.log(response.product.DATA)
     // const products = response.product.DATA
     
-    // const [products, setProduct] = useState([])
-    // setProduct(response.product.DATA)
+    const [products, setProduct] = useState([])
     
+    const response = useSelector(state => state.product)
+    // console.log(response.product.DATA)
     useEffect(()=> {
         dispatch(getProduct())
-    }, [dispatch])
-    const response = useSelector(state => state.product)
-    console.log(response.product.DATA)
-    // console.log(products)
+        setProduct(response.product.DATA)
+    }, [dispatch, response])
+    console.log(products)
     /* Lama */
 
     // const { method, uid, pin, idpel1, kode_produk } = useSelector((state) => state.inquiry)
@@ -154,13 +154,8 @@ export default function template() {
                     </div> */}
                     <div>
                         <h1>TEST</h1>
-                        {/* {response.product.DATA.map((product, index) => {
-                            <tr key={index}>
-                                <td>{product}</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        })} */}
+                        {/* {response.product.DATA} */}
+                        {response.product.DATA}
                     </div>
                 </div>
             </div>
